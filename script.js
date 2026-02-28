@@ -1,4 +1,5 @@
-// Mobile nav + reveal on scroll + RSVP (email via FormSubmit + localStorage backup) + music toggle
+
+
 (() => {
   const navBtn = document.querySelector('.navbtn');
   const nav = document.querySelector('.nav');
@@ -35,7 +36,6 @@
     showToast._t = window.setTimeout(() => toast.classList.remove('show'), 3200);
   };
 
-  // Music toggle
   const audio = document.getElementById('bgAudio');
   const musicFab = document.getElementById('musicFab');
   const icon = musicFab?.querySelector('.musicfab__icon');
@@ -68,7 +68,7 @@
     audio.addEventListener('play', () => setMusicUI(true));
   }
 
-  // RSVP (email + local backup)
+  // RSVP
   const form = document.getElementById('rsvpForm');
   if (!form) return;
 
@@ -77,19 +77,7 @@
     if (el) el.textContent = msg || '';
   };
 
-  // Ensure a hidden timestamp field exists (FormSubmit will email it)
-  const ensureHiddenField = (name) => {
-    let el = form.querySelector(`input[name="${name}"]`);
-    if (!el) {
-      el = document.createElement('input');
-      el.type = 'hidden';
-      el.name = name;
-      form.appendChild(el);
-    }
-    return el;
-  };
-
-  const submittedAtEl = ensureHiddenField('submitted_at');
+  const submittedAtEl = document.getElementById('submitted_at');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -119,19 +107,17 @@
       return;
     }
 
-    // Local backup on this device
     const payload = { name, phone, attendance, guests, notes, savedAt: new Date().toISOString() };
     localStorage.setItem('rsvp', JSON.stringify(payload, null, 2));
 
-    // Add timestamp for the email submission
-    submittedAtEl.value = payload.savedAt;
+    if (submittedAtEl) submittedAtEl.value = payload.savedAt;
 
     showToast('Sending RSVP...');
-
-    // IMPORTANT:
-    // Your <form> must have:
-    // action="https://formsubmit.co/vuwill7114@gmail.com"
-    // method="POST"
-    form.submit();
+    const nextEl = document.getElementById('nextUrl');
+    if (nextEl) {
+      const base = window.location.origin + window.location.pathname.replace(/[^/]*$/, '');
+      nextEl.value = base + 'thank-you.html';
+    }
+    form.submit(); // This will POST because your form has method="POST"
   });
 })();

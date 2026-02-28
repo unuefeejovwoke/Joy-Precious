@@ -179,67 +179,60 @@
 
         <div class="rsvp">
           <form
-              class="form reveal"
-              id="rsvpForm"
-              action="https://formsubmit.co/vuwill7114@gmail.com"
-              method="POST"
-            >
-              <!-- Anti spam -->
-              <input type="hidden" name="_captcha" value="true" />
-              <input type="hidden" name="_template" value="table" />
+            class="form reveal"
+            id="rsvpForm"
+            action="https://formsubmit.co/vuwill7114@gmail.com"
+            method="POST"
+          >
+            <!-- FormSubmit settings -->
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_subject" value="New Wedding RSVP: Joy & Precious" />
 
-              <!-- Email subject -->
-              <input type="hidden" name="_subject" value="New Wedding RSVP: Joy & Precious" />
+            <!-- IMPORTANT: Put your real hosted thank-you URL here -->
+            
+            <input type="hidden" name="_next" id="nextUrl" value="" />
 
-              <!-- Redirect after submit (change to your site URL) -->
-              <input type="hidden" name="_next" value="https://your-domain.com/#rsvp" />
+            <!-- Timestamp -->
+            <input type="hidden" name="submitted_at" id="submitted_at" />
 
-              <!-- Optional: add an autoresponse to the guest -->
-              <!-- <input type="hidden" name="_autoresponse" value="Thank you for your RSVP. We have received it." /> -->
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
+              <small class="error" data-error-for="name"></small>
+            </div>
 
-              <!-- Optional: CC someone -->
-              <!-- <input type="hidden" name="_cc" value="another@email.com" /> -->
+            <div class="field">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" />
+            </div>
 
-              <div class="field">
-                <label for="name">Full name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name" />
-                <small class="error" data-error-for="name"></small>
-              </div>
+            <div class="field">
+              <label for="attendance">Will you attend?</label>
+              <select id="attendance" name="attendance" required>
+                <option value="" selected disabled>Select one</option>
+                <option value="yes">Yes, I will attend</option>
+                <option value="no">Sorry, I cannot</option>
+                <option value="maybe">I will confirm later</option>
+              </select>
+              <small class="error" data-error-for="attendance"></small>
+            </div>
 
-              <div class="field">
-                <label for="phone">Phone (optional)</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" />
-              </div>
+            <div class="field">
+              <label for="guests">Number of guests</label>
+              <input id="guests" name="guests" type="number" min="1" max="6" value="1" required />
+              <small class="help">If you are bringing a plus one, set 2.</small>
+              <small class="error" data-error-for="guests"></small>
+            </div>
 
-              <div class="field">
-                <label for="attendance">Will you attend?</label>
-                <select id="attendance" name="attendance" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option value="yes">Yes, I will attend</option>
-                  <option value="no">Sorry, I cannot</option>
-                  <option value="maybe">I will confirm later</option>
-                </select>
-                <small class="error" data-error-for="attendance"></small>
-              </div>
+            <div class="field">
+              <label for="notes">Notes (optional)</label>
+              <textarea id="notes" name="notes" rows="4" placeholder="Any notes"></textarea>
+            </div>
 
-              <div class="field">
-                <label for="guests">Number of guests</label>
-                <input id="guests" name="guests" type="number" min="1" max="6" value="1" required />
-                <small class="help">If you are bringing a plus one, set 2.</small>
-                <small class="error" data-error-for="guests"></small>
-              </div>
-
-              <div class="field">
-                <label for="notes">Notes (optional)</label>
-                <textarea id="notes" name="notes" rows="4" placeholder="Any notes"></textarea>
-              </div>
-
-              <!-- Optional: include a timestamp -->
-              <input type="hidden" name="submitted_at" id="submitted_at" />
-
-              <button class="btn" type="submit">Submit RSVP</button>
-              <p class="form__hint">Your RSVP will be sent to the couple’s email.</p>
-            </form>
+            <button class="btn" type="submit">Submit RSVP</button>
+            <p class="form__hint">Your RSVP will be sent to the couple’s email.</p>
+          </form>
           <aside class="aside reveal delay-1">
             <div class="aside__card">
               <h3>RSVP contacts</h3>
@@ -277,7 +270,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <p>Joy &amp; Precious Wedding Invitation</p>
-      <p class="muted">Music toggle is at the bottom right.</p>
+      <p class="muted">Designed with love by Groom's brother.</p>
     </div>
   </footer>
 
