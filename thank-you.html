@@ -1,0 +1,177 @@
+<!-- thank-you.html
+Place this file in the same folder as your index.html
+Then set your form hidden _next to: thank-you.html
+
+Example:
+<input type="hidden" name="_next" value="thank-you.html" />
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You | Joy & Precious</title>
+  <meta name="description" content="Thank you page for RSVP submission." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand" aria-label="Site name">Joy &amp; Precious</div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#timeline">Schedule</a>
+        <a href="index.html#details">Venue</a>
+        <a href="index.html#colors">Colors</a>
+        <a href="index.html#rsvp">RSVP</a>
+        <a class="btn btn--small" href="index.html#rsvp">Confirm</a>
+      </nav>
+      <button class="navbtn" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">RSVP received</p>
+
+          <h1 class="reveal delay-1">Thank you</h1>
+
+          <p class="lead reveal delay-2">
+            Your RSVP has been submitted successfully.
+          </p>
+
+          <div class="pillrow reveal delay-3">
+            <div class="pill">
+              <div class="pill__label">Date</div>
+              <div class="pill__value">Saturday, May 2, 2026</div>
+            </div>
+            <div class="pill">
+              <div class="pill__label">Time</div>
+              <div class="pill__value">11:00 AM</div>
+            </div>
+          </div>
+
+          <p class="note reveal delay-4">
+            We look forward to celebrating with you.
+          </p>
+
+          <div class="hero__cta reveal delay-5">
+            <a class="btn" href="index.html#details">View venue details</a>
+            <a class="link" href="index.html">Back to invitation</a>
+          </div>
+
+          <div class="reveal delay-6" style="margin-top: 18px;">
+            <span class="badgeColor" aria-label="Color of the day">Burgundy</span>
+          </div>
+        </div>
+
+        <div class="hero__media reveal delay-2" role="img" aria-label="Wedding invitation artwork">
+          <img
+            src="assets/img/invitation.png"
+            alt="Wedding invitation for Joy and Precious"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="reveal">Need to update your RSVP?</h2>
+          <p class="subhead reveal delay-1">You can resubmit the form anytime.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <h3>RSVP contacts</h3>
+            <p><strong>Unuefe Ejovwoke:</strong> 09075254818</p>
+            <p><strong>Ewuba Ruth:</strong> 09122948651</p>
+          </article>
+
+          <article class="card reveal delay-1">
+            <h3>Location</h3>
+            <p>
+              Kingdom Hall of Jehovah's Witnesses<br>
+              No. 139, PTI Road<br>
+              Opposite Rain Oil Filling Station<br>
+              Effurun, Delta State
+            </p>
+          </article>
+
+          <article class="card reveal delay-2">
+            <h3>Back to RSVP</h3>
+            <p>If you need to change anything, submit again.</p>
+            <a class="btn btn--small" href="index.html#rsvp">Edit RSVP</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>Joy &amp; Precious Wedding Invitation</p>
+      <p class="muted">Thank you for confirming.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav (same behavior)
+    (() => {
+      const navBtn = document.querySelector('.navbtn');
+      const nav = document.querySelector('.nav');
+      if (!navBtn || !nav) return;
+
+      navBtn.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        navBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          nav.classList.remove('open');
+          navBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Reveal
+      const revealEls = Array.from(document.querySelectorAll('.reveal'));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.16 });
+      revealEls.forEach(el => io.observe(el));
+    })();
+  </script>
+
+  <style>
+    /* Small badge that matches your bottom-right box style */
+    .badgeColor{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 16px;
+      border-radius:12px;
+      background: rgba(120, 32, 48, 0.92); /* burgundy */
+      border: 1px solid rgba(200, 200, 210, 0.9); /* silver/grey */
+      color: #fff;
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 10px 24px rgba(20,20,24,0.10);
+    }
+  </style>
+</body>
+</html>
